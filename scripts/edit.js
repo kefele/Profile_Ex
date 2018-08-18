@@ -14,11 +14,12 @@ const edit = {
     
     `,
 
-    controller: ["ProfileService", function (ProfileService) {
+    controller: ["ProfileService","$location", function (ProfileService, $location) {
         const vm = this;
         vm.userProfile = ProfileService.getUserProfile();
         vm.sendProfileToService = function (newUserProfile) {
             vm.userProfile = ProfileService.setUserProfile(newUserProfile);
+            $location.path("/profile");
         }
     }]
 }

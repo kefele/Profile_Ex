@@ -8,14 +8,17 @@ const userProfile = {
         <h1>{{ $ctrl.input.name }}</h1>
         <p>{{ $ctrl.input.contactInfo }}</p>
         <p>{{ $ctrl.input.bio }}</p>
-        <button>Edit</button>
+        <button ng-click ="$ctrl.editProfile()" >Edit</button>
         </form>
 
     `,
 
-    controller: ["ProfileService", function(ProfileService){
+    controller: ["ProfileService", "$location", function(ProfileService, $location){
         const vm = this;
         vm.input = ProfileService.getUserProfile();
+        vm.editProfile = function(){
+            $location.path("/edit");
+        } 
     }]
 }
 angular
